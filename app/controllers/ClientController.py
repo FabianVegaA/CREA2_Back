@@ -4,7 +4,7 @@ from app.models.Client import ClientModel, ClientSchema
 from flask import request, jsonify, flash
 
 
-@app.route("/clients", methods=["GET"])
+@app.route("/client", methods=["GET"])
 def get_clients():
     clients = ClientModel.query.all()
     json = ClientSchema(many=True).dumps(clients)

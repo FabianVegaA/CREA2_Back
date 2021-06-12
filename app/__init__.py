@@ -17,26 +17,30 @@ db = SQLAlchemy()
 ma = Marshmallow(app)
 
 
-def create_app():
+from app.models import Client, Service
+from app.controllers import ClientController
 
-    db.init_app(app)
 
-    login_manager = LoginManager()
-    login_manager.login_view = "auth.login"
-    login_manager.init_app(app)
+# def create_app():
 
-    from app.models.Client import Client
+#     db.init_app(app)
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return Client.query.get(int(user_id))
+#     login_manager = LoginManager()
+#     login_manager.login_view = "auth.login"
+#     login_manager.init_app(app)
 
-    from .auth import auth as aut_blueprint
+#     from app.models.Client import Client
 
-    app.register_blueprint((aut_blueprint))
+#     @login_manager.user_loader
+#     def load_user(user_id):
+#         return Client.query.get(int(user_id))
 
-    from .main import main as main_blueprint
+#     from .auth import auth as aut_blueprint
 
-    app.register_blueprint((main_blueprint))
+#     app.register_blueprint((aut_blueprint))
 
-    return app
+#     from .main import main as main_blueprint
+
+#     app.register_blueprint((main_blueprint))
+
+#     return app
